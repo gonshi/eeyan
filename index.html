@@ -25,10 +25,36 @@
   </head>
   <body>
     <div id="wrapper">
-      <div class="fb-like">
-        <iframe src="//www.facebook.com/plugins/like.php?locale=ja_KS&amp;href=https%3A%2F%2Fgonshi.github.io%2Feeyan%2F&amp;width&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=65&amp;appId=338214716350589" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:65px;" allowTransparency="true"></iframe>
-      </div>
+      <div class="fb-like" data-share="false" data-width="450" data-show-faces="true"></div>
     </div>
     <script src="js/app.min.js"></script>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '338214716350589',
+        xfbml      : true,
+        version    : 'v2.1'
+      });
+
+      FB.ui(
+       {
+         method: 'share_open_graph',
+         action_type: 'og.likes',
+         action_properties: JSON.stringify({
+          object:'http://gonshi.github.io/eeyan/',
+         })
+      }, function(response){
+        console.log( response );
+      });
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "//connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
   </body>
 </html>
