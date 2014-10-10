@@ -27,6 +27,7 @@
     <div id="wrapper">
       <div class="fb-like" data-share="false" data-width="450" data-show-faces="true"></div>
       <p id="iine">iine</p>
+      <a href="https://twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a>
     </div>
     <script src="js/app.min.js"></script>
   <script>
@@ -61,6 +62,29 @@
        js.src = "//connect.facebook.net/en_US/sdk.js";
        fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));
+
+    window.twttr = (function(d,s,id){
+      var t,
+          js,
+          fjs = d.getElementsByTagName(s)[0];
+
+      if (d.getElementById(id)) return;
+
+      js = d.createElement(s);
+      js.id = id;
+      js.src= "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+      return window.twttr || (t = { _e: [], ready: function (f) { t._e.push(f) } });
+    }(document, 'script', 'twitter-wjs'));
+
+    twttr.ready(function (twttr) {
+      twttr.events.bind(
+        'tweet',
+        function (event) {
+          alert( 'tweet' );
+        }
+      );
+    });
   </script>
   </body>
 </html>
