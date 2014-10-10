@@ -26,6 +26,7 @@
   <body>
     <div id="wrapper">
       <div class="fb-like" data-share="false" data-width="450" data-show-faces="true"></div>
+      <p id="iine">iine</p>
     </div>
     <script src="js/app.min.js"></script>
   <script>
@@ -34,10 +35,24 @@
         appId      : '338214716350589',
         xfbml      : true,
         version    : 'v2.1'
-      }, function( response ){
-        console.log( response );
       });
     };
+
+    document.getElementById( 'iine' ).addEventListener( 'click', function(){
+      FB.ui(
+        {
+          method: 'share',
+          href: 'http://gonshi.github.io/eeyan/',
+        },
+        function(response) {
+          if (response && !response.error_code) {
+            alert('Posting completed.');
+          } else {
+            alert('Error while posting.');
+          }
+        }
+      );
+    }, false );
 
     (function(d, s, id){
        var js, fjs = d.getElementsByTagName(s)[0];
